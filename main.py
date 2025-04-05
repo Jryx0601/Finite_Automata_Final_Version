@@ -47,11 +47,10 @@ with col1:
         current_position = 'q0'
         for x in input_string:
             if current_position != 'q16':
-                dot.node(current_position,color='red',style = 'filled')
+                dot.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
                 temp = current_position
                 current_position = dfa_binary[current_position][int(x)]
                 place_holder.graphviz_chart(dot)
-                dot.node(temp,color = 'white')
                 dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
             elif current_position == 'q16':
                 current_position = dfa_binary[current_position][int(x)]
@@ -117,12 +116,11 @@ with col1_letter:
         current_position = 'q0'
         for x in input_letter:
             if current_position != 'q21':
-                dot_letter.node(current_position,color = 'red',style = 'filled')
+                dot_letter.node(current_position,stye='solid',fillcolor = 'transparent')
                 temp = current_position
                 current_position = dfa_letter[current_position][x]
                 place_holder_letter.graphviz_chart(dot_letter)
-                dot_letter.node(temp,color = 'white')
-                dot_letter.node(temp,color = 'black',style = 'solid')
+                dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
             elif current_position == 'q21':
                 dot_letter.node(current_position,color = 'green',style = 'filled')
                 place_holder_letter.graphviz_chart(dot_letter)
