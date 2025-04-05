@@ -139,5 +139,6 @@ with col1_letter:
             time.sleep(1)
 with col2_letter:
     valir_onot = st.button('Check Letter')
-    results_binary = dfa_checker(input_letter,'letter')
-    st.text(f'Result: {results_binary}')
+    if valir_onot:
+        results_binary = dfa_checker(input_letter,'letter')
+        st.text(f'Result: {results_binary}')
