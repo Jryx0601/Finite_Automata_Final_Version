@@ -45,7 +45,11 @@ with col1:
     simulate = st.button('Simulate Binary')
     if simulate:
         current_position = 'q0'
+        dot.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
+        place_holder.graphviz_chart(dot)
+        time.sleep(1)
         for x in input_string:
+            dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
             current_position = dfa_binary[current_position][int(x)]
             if current_position != 'q16':
                 temp = current_position
@@ -113,13 +117,21 @@ with col1_letter:
     simulate_letter = st.button('Simulate Letter')
     if simulate_letter:
         current_position = 'q0'
+        dot_letter.node(current_position,color = 'red',stye='solid',fillcolor = 'transparent')
+        place_holder_letter.graphviz_chart(dot_letter)
+        time.sleep(1)
         for x in input_letter:
+            dot_letter.node(current_position,color = 'black',stye='solid',fillcolor = 'transparent')
+            current_position = dfa_letter[current_position][x]
             if current_position != 'q21':
-                dot_letter.node(current_position,stye='solid',fillcolor = 'transparent')
                 temp = current_position
-                current_position = dfa_letter[current_position][x]
+                dot_letter.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
                 place_holder_letter.graphviz_chart(dot_letter)
                 dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                if current_position == 'T':
+                    dot_letter.node('T',color = 'red',style = 'filled')
+                    place_holder_letter.graphviz_chart(dot_letter)
+                    break
             elif current_position == 'q21':
                 dot_letter.node(current_position,color = 'green',style = 'filled')
                 place_holder_letter.graphviz_chart(dot_letter)
