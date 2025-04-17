@@ -40,7 +40,7 @@ for state, transitions in dfa_binary.items():
 dot.attr(rankdir ='LR')
 place_holder.graphviz_chart(dot)
 
-col1, col2 = st.columns([1,1])
+col1, col2, col3,col4 = st.columns([1,1,1,1])
 with col1:
     simulate = st.button('Simulate Binary')
     if simulate:
@@ -67,6 +67,20 @@ with col2:
     if check:
         results = dfa_checker(input_string,'binary')
         st.text(f"Result:{results}")
+with col3:
+    with st.popover('CFG'):
+        st.text('S -> ABCDAAEH')
+        st.text('   A -> 1|0')
+        st.text('   B -> 1B|0B|e')
+        st.text('   C -> 11|00')
+        st.text('   D -> 11D|00D|e')
+        st.text('   E -> 1F0G')
+        st.text('   F -> 1F|e')
+        st.text('   G -> 0G|e')
+        st.text('   H -> 11B|00B')
+with col4:
+    with st.popover('PDA'):
+        pass
 
 st.divider()
 #-------------------------------------------------------------------------
@@ -111,7 +125,7 @@ dot_letter.attr(rankdir = 'LR')
 
 place_holder_letter.graphviz_chart(dot_letter)
 
-col1_letter,col2_letter = st.columns([1,1])
+col1_letter,col2_letter,col3_letter,col4_letter = st.columns([1,1,1,1])
 
 with col1_letter:
     simulate_letter = st.button('Simulate Letter')
@@ -142,3 +156,13 @@ with col2_letter:
     if valir_onot:
         results_binary = dfa_checker(input_letter,'letter')
         st.text(f'Result: {results_binary}')
+
+with col3_letter:
+    with st.popover('CFG'):
+        pass
+with col4_letter:
+    with st.popover('PDA'):
+        pass
+
+
+
