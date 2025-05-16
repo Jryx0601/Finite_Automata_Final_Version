@@ -1,0 +1,59 @@
+"""
+with container:
+    if simulate:
+        current_position = 'q0'
+        dot.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
+        place_holder.graphviz_chart(dot)
+        time.sleep(1)
+        for binary in input_string1:
+            dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+            current_position = dfa_binary[current_position][int(x)]
+            if binary != ",":
+                if current_position != 'q16':
+                    temp = current_position
+                    dot.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
+                    output += f'{x} '
+                    placehold_printing.write(output)
+                    place_holder.graphviz_chart(dot)
+                    dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                elif current_position == 'q16':
+                    dot.node(current_position,color = 'green',style = 'filled')
+                    place_holder.graphviz_chart(dot)
+                    output +=' = Valid'
+                    placehold_printing.write(output)
+                    break
+                time.sleep(1)
+                if current_position != 'q16':
+                    output += ' = invalid'
+                    placehold_printing.write(output)
+                output = ""
+            else:
+                continue
+"""
+with container:
+    if simulate:
+        current_position = 'q0'
+        dot.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
+        place_holder.graphviz_chart(dot)
+        time.sleep(1)
+        for x in input_string1:
+            dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+            current_position = dfa_binary[current_position][int(x)]
+            if current_position != 'q16':
+                temp = current_position
+                dot.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
+                output += f'{x} '
+                placehold_printing.write(output)
+                place_holder.graphviz_chart(dot)
+                dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+            elif current_position == 'q16':
+                dot.node(current_position,color = 'green',style = 'filled')
+                place_holder.graphviz_chart(dot)
+                output +=' = Valid'
+                placehold_printing.write(output)
+                break
+            time.sleep(1)
+        if current_position != 'q16':
+            output += ' = invalid'
+            placehold_printing.write(output)
+        output = ""

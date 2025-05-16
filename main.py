@@ -25,48 +25,13 @@ dfa_binary = {
     'q16': {1: 'q16', 0: 'q16'}
 }
 #------------------------------------------------------------------------------------------------------
-st.text('Regex: (1+0)(1+0)*(11+00)(11+00)*(1+0)(0+1)(11*00*) ((00)*+(11)*)(11+00)(11+00)*(1+0)*')
-input_string = st.text_input('Enter a string: (Ex. 101010...)')
-#------------------------------------------------------------------------------------------------------
+st.header('Regex: (1+0)(1+0)*(11+00)(11+00)*(1+0)(0+1)(11*00*) ((00)*+(11)*)(11+00)(11+00)*(1+0)*')
+input_string1 = st.text_input('Enter a string number:')
+st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (111111011,111111011,)', icon="⚠️")
 
-#------------------------------------------------------------------------------------------------------
-dot = Digraph()
-place_holder = st.empty()
-for state, transitions in dfa_binary.items():
-    dot.node(state)
-    
-    for symbol,next_state in transitions.items():
-        dot.edge(state,next_state,label = str(symbol))
-dot.attr(rankdir ='LR')
-place_holder.graphviz_chart(dot)
-
-col1, col2, col3,col4 = st.columns([1,1,1,1])
+col1,col3,col4 = st.columns([1,1,1])
 with col1:
     simulate = st.button('Simulate Binary')
-    if simulate:
-        current_position = 'q0'
-        dot.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
-        place_holder.graphviz_chart(dot)
-        time.sleep(1)
-        for x in input_string:
-            dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
-            current_position = dfa_binary[current_position][int(x)]
-            if current_position != 'q16':
-                temp = current_position
-                dot.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
-                place_holder.graphviz_chart(dot)
-                dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
-            elif current_position == 'q16':
-                dot.node(current_position,color = 'green',style = 'filled')
-                place_holder.graphviz_chart(dot)
-                break
-            time.sleep(1)
-
-with col2:
-    check = st.button('Check Binary')
-    if check:
-        results = dfa_checker(input_string,'binary')
-        st.text(f"Result:{results}")
 with col3:
     with st.popover('CFG'):
         st.text('S -> ABCDAAEH')
@@ -82,6 +47,72 @@ with col4:
     with st.popover('PDA'):
         pass
 
+
+#------------------------------------------------------------------------------------------------------
+dot = Digraph()
+place_holder = st.empty()
+for state, transitions in dfa_binary.items():
+    dot.node(state)
+    
+    for symbol,next_state in transitions.items():
+        dot.edge(state,next_state,label = str(symbol))
+dot.attr(rankdir ='LR')
+place_holder.graphviz_chart(dot)
+#------------------------------------------------------------------------------------------------------
+container = st.container()
+placehold_printing = st.empty()
+output = ""
+with container:
+    if simulate:
+        current_position = 'q0'
+        dot.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
+        place_holder.graphviz_chart(dot)
+        time.sleep(1)
+        for binary in input_string1:
+            if binary != ",":
+                dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+                current_position = dfa_binary[current_position][int(binary)]
+                if current_position != 'q16':
+                    temp = current_position
+                    dot.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
+                    output += f'{binary} '
+                    placehold_printing.markdown(output.strip())
+                    place_holder.graphviz_chart(dot)
+                    dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                elif current_position == 'q16':
+                    dot.node(current_position,color = 'green',style = 'solid', fillcolor = 'transparent')
+                    temp = current_position
+
+                    output += f"{binary} "
+                    placehold_printing.markdown(output.strip())
+                    place_holder.graphviz_chart(dot)
+                    time.sleep(1)
+                    continue
+                time.sleep(1)
+                
+            elif binary == ",":
+                if temp != 'q16':
+                    output += " = Invalid, \n\n"
+                    placehold_printing.markdown(output.strip())
+                    time.sleep(1)
+                else:
+                    output += " = Valid, \n\n"
+                    placehold_printing.markdown(output.strip())
+                    time.sleep(1)
+                dot.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                place_holder.graphviz_chart(dot)
+                time.sleep(1)
+                current_position = 'q0'
+                dot.node('q0',color='red',stye='solid',fillcolor = 'transparent')
+                place_holder.graphviz_chart(dot)
+                time.sleep(1)
+                continue
+
+        dot.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+        place_holder.graphviz_chart(dot)
+        time.sleep(1)
+
+#------------------------------------------------------------------------------------------------------
 st.divider()
 #-------------------------------------------------------------------------
 dfa_letter = {
@@ -111,10 +142,19 @@ dfa_letter = {
 }
 #------------------------------------------------------------------------------------------------------
 
-st.text('Regex: (aa+bb)(a+b)*(aba+bab+bbb+aaa)(ab+ba)*(bb+aa)(a+b)*(a*ba*ba*)(bab+bba+bbb+aba)(a+b)*')
-input_letter = st.text_input('Enter a string: (Ex. ababab)')
+st.header('Regex: (aa+bb)(a+b)*(aba+bab+bbb+aaa)(ab+ba)*(bb+aa)(a+b)*(a*ba*ba*)(bab+bba+bbb+aba)(a+b)*')
+input_letter = st.text_input('Enter a string letter:')
+st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (aaaaaaaaaa,aaaaaaaaaa,)', icon="⚠️")
+col1_letter,col3_letter,col4_letter = st.columns([1,1,1])
+with col1_letter:
+    simulate_letter = st.button('Simulate Letter')
+with col3_letter:
+    with st.popover('CFG'):
+        pass
+with col4_letter:
+    with st.popover('PDA'):
+        pass
 #------------------------------------------------------------------------------------------------------
-
 place_holder_letter = st.empty()
 dot_letter = Digraph()
 for state,transition in dfa_letter.items():
@@ -122,47 +162,89 @@ for state,transition in dfa_letter.items():
     for symbol, next_state in transition.items():
         dot_letter.edge(state,next_state,label=str(symbol))
 dot_letter.attr(rankdir = 'LR')
-
 place_holder_letter.graphviz_chart(dot_letter)
+#------------------------------------------------------------------------------------------------------
+# if simulate_letter:
+#     current_position = 'q0'
+#     dot_letter.node(current_position,color = 'red',stye='solid',fillcolor = 'transparent')
+#     place_holder_letter.graphviz_chart(dot_letter)
+#     time.sleep(1)
+#     for x in input_letter:
+#         dot_letter.node(current_position,color = 'black',stye='solid',fillcolor = 'transparent')
+#         current_position = dfa_letter[current_position][x]
+#         if current_position != 'q21':
+#             temp = current_position
+#             dot_letter.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
+#             place_holder_letter.graphviz_chart(dot_letter)
+#             dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+#             if current_position == 'T':
+#                 dot_letter.node('T',color = 'red',style = 'filled')
+#                 place_holder_letter.graphviz_chart(dot_letter)
+#                 break
+#         elif current_position == 'q21':
+#             dot_letter.node(current_position,color = 'green',style = 'filled')
+#             place_holder_letter.graphviz_chart(dot_letter)
+#             break
+#         time.sleep(1)
 
-col1_letter,col2_letter,col3_letter,col4_letter = st.columns([1,1,1,1])
-
-with col1_letter:
-    simulate_letter = st.button('Simulate Letter')
+container_letter = st.container()
+placehold_printing_letter = st.empty()
+with container_letter:
     if simulate_letter:
         current_position = 'q0'
-        dot_letter.node(current_position,color = 'red',stye='solid',fillcolor = 'transparent')
+        dot_letter.node('q0',color = 'red',stye='solid',fillcolor = 'transparent')
         place_holder_letter.graphviz_chart(dot_letter)
         time.sleep(1)
-        for x in input_letter:
-            dot_letter.node(current_position,color = 'black',stye='solid',fillcolor = 'transparent')
-            current_position = dfa_letter[current_position][x]
-            if current_position != 'q21':
-                temp = current_position
-                dot_letter.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
-                place_holder_letter.graphviz_chart(dot_letter)
-                dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
-                if current_position == 'T':
-                    dot_letter.node('T',color = 'red',style = 'filled')
+        for letter in input_letter:
+            if letter != ",":
+                dot_letter.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+                current_position = dfa_letter[current_position][letter]
+                if current_position != 'q21':
+                    temp = current_position
+                    dot_letter.node(current_position,color='red',stye='solid',fillcolor = 'transparent')
+                    output += f'{letter} '
+                    placehold_printing_letter.markdown(output.strip())
                     place_holder_letter.graphviz_chart(dot_letter)
-                    break
-            elif current_position == 'q21':
-                dot_letter.node(current_position,color = 'green',style = 'filled')
-                place_holder_letter.graphviz_chart(dot_letter)
-                break
-            time.sleep(1)
-with col2_letter:
-    valir_onot = st.button('Check Letter')
-    if valir_onot:
-        results_binary = dfa_checker(input_letter,'letter')
-        st.text(f'Result: {results_binary}')
+                    dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                elif current_position == 'T':
+                    dot_letter.node('T',color = 'red',style = 'filled')
+                    output += f'{letter} '
+                    placehold_printing_letter.markdown(output.strip())
+                    place_holder_letter.graphviz_chart(dot_letter)
+                    time.sleep(1)
+                    continue
+                elif current_position == 'q21':
+                    dot_letter.node(current_position,color = 'green',style = 'solid', fillcolor = 'transparent')
+                    temp = current_position
 
-with col3_letter:
-    with st.popover('CFG'):
-        pass
-with col4_letter:
-    with st.popover('PDA'):
-        pass
+                    output += f"{letter} "
+                    placehold_printing_letter.markdown(output.strip())
+                    place_holder_letter.graphviz_chart(dot_letter)
+                    time.sleep(1)
+                    continue
+                time.sleep(1)
+                
+            elif letter == ",":
+                if temp != 'q21' or temp == 'T':
+                    output += " = Invalid, \n\n"
+                    placehold_printing_letter.markdown(output.strip())
+                    time.sleep(1)
+                else:
+                    output += " = Valid, \n\n"
+                    placehold_printing_letter.markdown(output.strip())
+                    time.sleep(1)
+                dot_letter.node(temp,color = 'black',stye='solid',fillcolor = 'transparent')
+                place_holder_letter.graphviz_chart(dot_letter)
+                time.sleep(1)
+                current_position = 'q0'
+                dot_letter.node('q0',color='red',stye='solid',fillcolor = 'transparent')
+                place_holder_letter.graphviz_chart(dot_letter)
+                time.sleep(1)
+                continue
+
+        dot_letter.node('q0',color = 'black',stye='solid',fillcolor = 'transparent')
+        place_holder_letter.graphviz_chart(dot_letter)
+        time.sleep(1)
 
 
 
