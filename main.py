@@ -160,7 +160,7 @@ col1_letter,col3_letter,col4_letter = st.columns([1,1,1])
 with col1_letter:
     simulate_letter = st.button('Simulate Letter')
 with col3_letter:
-    with st.popover('CFG'):
+    with st.popover('Context Free Grammar'):
         st.text('S -> ACDEFGHLM')
         st.text('A -> aa|bb')
         st.text('C -> aC|bC|e')
@@ -173,7 +173,7 @@ with col3_letter:
         st.text('L -> bab|bba|bbb|aba')
         st.text('M -> aM|bM|e')
 with col4_letter:
-    with st.popover('PDA'):
+    with st.popover('Push Down Automata'):
         pass
 #------------------------------------------------------------------------------------------------------
 place_holder_letter = st.empty()
