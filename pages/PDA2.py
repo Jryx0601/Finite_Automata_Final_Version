@@ -2,8 +2,6 @@ import streamlit as st
 from PIL import Image
 
 st.header('Push Down Automata Regex 2')
-
-
 img = Image.open('PDA2_Regex.png')
 st.image(img,use_container_width=True)
 
