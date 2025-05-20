@@ -1,2 +1,4 @@
 graphviz
 streamlit-extras
+streamlit==1.22.0
+streamlit-extras
