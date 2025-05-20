@@ -4,6 +4,7 @@ from graphviz import Digraph
 from dfa_checker import dfa_checker
 import time
 from PIL import Image
+from streamlit_extras.switch_page_button import switch_page
 import pathlib
 st.set_page_config(layout="wide",initial_sidebar_state='collapsed')
 
@@ -51,7 +52,7 @@ with tab1:
     with col4:
         modal = st.button('Push Down Automata Binary')
         if modal:
-            st.switch_page('pages/PDA1.py')
+            switch_page('PDA1')
 #------------------------------------------------------------------------------------------------------
     dot = Digraph()
     place_holder = st.empty()
