@@ -1,4 +1,4 @@
 graphviz
 streamlit-extras
 streamlit==1.29.0
-streamlit-extras==0.3.6  # if you're also using switch_page
+streamlit-extras==0.3.6
