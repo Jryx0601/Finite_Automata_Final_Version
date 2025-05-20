@@ -171,7 +171,7 @@ with tab2:
             st.text('M -> aM|bM|e')
     with col4_letter:
         if st.button('Push Down Automata Letter'):
-            st.switch_page('pages/PDA2.py')
+            switch_page('PDA2')
     #------------------------------------------------------------------------------------------------------
     place_holder_letter = st.empty()
     dot_letter = Digraph()
