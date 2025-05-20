@@ -6,6 +6,7 @@ import time
 from PIL import Image
 import pathlib
 st.set_page_config(layout="wide",initial_sidebar_state='collapsed')
+
 tab1, tab2,tab3 = st.tabs(['Regex 1','Regex 2','Members'])
 with tab1:
     dfa_binary = {
