@@ -1,4 +1,1 @@
 graphviz
-streamlit-extras
-streamlit==1.29.0
-streamlit-extras==0.3.6
