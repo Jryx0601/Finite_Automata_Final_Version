@@ -4,8 +4,8 @@ from graphviz import Digraph
 from dfa_checker import dfa_checker
 import time
 from PIL import Image
-st.set_page_config(layout="wide")
-
+import pathlib
+st.set_page_config(layout="wide",initial_sidebar_state='collapsed')
 tab1, tab2,tab3 = st.tabs(['Regex 1','Regex 2','Members'])
 with tab1:
     dfa_binary = {
@@ -30,7 +30,7 @@ with tab1:
 #------------------------------------------------------------------------------------------------------
     st.header('Regex: (1+0)(1+0) **(11+00)(11+00)* *(1+0)(0+1)(11 * *00* *) ((00) * *+(11)* *)(11+00)(11+00) * *(1+0)* *')
     input_string1 = st.text_input('Enter a string number:')
-    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (111111011,111111011,)', icon="⚠️")
+    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input: \n\n   - 111101000\n\n   - 1111111011', icon="⚠️")
     img = Image.open('PDA.drawio.png')
 
     col1,col3,col4 = st.columns([1,1,1])
@@ -48,13 +48,9 @@ with tab1:
             st.text('   G -> 0G|e')
             st.text('   H -> 11B|00B')
     with col4:
-        @st.dialog('Push Down Automata Regex 1',width='large')
-        def modalopen():
-            resized_img = img.resize((2500,1500))
-            st.image(resized_img)
         modal = st.button('Push Down Automata Binary')
         if modal:
-            modalopen()
+            st.switch_page('pages/PDA1.py')
 #------------------------------------------------------------------------------------------------------
     dot = Digraph()
     place_holder = st.empty()
@@ -153,7 +149,7 @@ with tab2:
     #------------------------------------------------------------------------------------------------------
     st.header('Regex: (aa+bb)(a+b)*(aba+bab+bbb+aaa)(ab+ba) * *(bb+aa)(a+b)* **(a* **ba* *ba * *)(bab+bba+bbb+aba)(a+b)* *')
     input_letter = st.text_input('Enter a string letter:')
-    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (aaaaaaaaaa,aaaaaaaaaa,)', icon="⚠️")
+    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (aaaaaaaaaa,aaaaaaaaaa,)\n\n- Valid Input: \n\n    - aaababbbbbaba\n\n   - bbbababaabbbaba', icon="⚠️")
     img2 = Image.open('PDA2_Regex.png')
     col1_letter,col3_letter,col4_letter = st.columns([1,1,1])
     with col1_letter:
@@ -172,14 +168,8 @@ with tab2:
             st.text('L -> bab|bba|bbb|aba')
             st.text('M -> aM|bM|e')
     with col4_letter:
-        @st.dialog('Push Down Automata Regex 2',width='large')
-        def modalopen():
-            resized_img2= img2.resize((2500,1500))
-            st.image(resized_img2)
-
-        modal = st.button('Push Down Automata Letter')
-        if modal:
-            modalopen()
+        if st.button('Push Down Automata Letter'):
+            st.switch_page('pages/PDA2.py')
     #------------------------------------------------------------------------------------------------------
     place_holder_letter = st.empty()
     dot_letter = Digraph()
@@ -225,7 +215,7 @@ with tab2:
                             placehold_printing_letter.markdown(output_letter.strip())
                             place_holder_letter.graphviz_chart(dot_letter)
                             time.sleep(1)
-                            break
+                            continue
                         elif current_position == 'q21':
                             dot_letter.node(current_position,color = 'green',style = 'filled',fillcolor = 'darkolivegreen1',penwidth = '3')
                             temp = current_position
@@ -238,11 +228,11 @@ with tab2:
                         time.sleep(1)
                     elif letter == ",":
                         if temp != 'q21' or temp == 'T':
-                            output_letter += " = Invalid, \n\n"
+                            output_letter += " = Invalid \n\n"
                             placehold_printing_letter.markdown(output_letter.strip())
                             time.sleep(1)
                         else:
-                            output_letter += " = Valid, \n\n"
+                            output_letter += " = Valid \n\n"
                             placehold_printing_letter.markdown(output_letter.strip())
                             time.sleep(1)
                         dot_letter.node('q21',color = 'green',stye='filled', fillcolor = 'white',pendwith = '3')
