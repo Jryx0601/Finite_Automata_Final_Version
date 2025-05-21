@@ -9,4 +9,4 @@ col1,col2,col3 = st.columns([1,10,1])
 col2.image(img)
 
 if st.button('Back to Homepage'):
-    st.switch_page('main.py')
+    st.switch_page('Homepage.py')
