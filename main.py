@@ -30,9 +30,9 @@ with tab1:
     'q16': {1: 'q16', 0: 'q16'}
     }
 #------------------------------------------------------------------------------------------------------
-    st.header('Regex: (1+0)(1+0) **(11+00)(11+00)* *(1+0)(0+1)(11 * *00* *) ((00) * *+(11)* *)(11+00)(11+00) * *(1+0)* *')
+    st.header('Regex: (1+0)(1+0)\\*(11+00)(11+00)\\*(1+0)(0+1)(11\\*00\\*) ((00)\\*+(11)\\*)(11+00)(11+00)\\*(1+0)\\*')
     input_string1 = st.text_input('Enter a string number:')
-    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input: \n\n   - 111101000\n\n   - 1111111011', icon="⚠️")
+    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input Example: \n\n   - 111101000\n\n   - 1111111011', icon="⚠️")
     img = Image.open('PDA.drawio.png')
 
     col1,col3,col4 = st.columns([1,1,1])
@@ -53,6 +53,7 @@ with tab1:
         modal = st.button('Push Down Automata Binary')
         if modal:
             switch_page('PDA1')
+            # st.switch_page('pages/PDA1.py')
 #------------------------------------------------------------------------------------------------------
     dot = Digraph()
     place_holder = st.empty()
@@ -149,9 +150,9 @@ with tab2:
     'T':{'a':'T','b':'T'}
 }
     #------------------------------------------------------------------------------------------------------
-    st.header('Regex: (aa+bb)(a+b)*(aba+bab+bbb+aaa)(ab+ba) * *(bb+aa)(a+b)* **(a* **ba* *ba * *)(bab+bba+bbb+aba)(a+b)* *')
+    st.header('Regex: (aa+bb)(a+b)\\*(aba+bab+bbb+aaa)(ab+ba)\\*(bb+aa)(a+b)\\*(a\\*ba\\*ba\\*)(bab+bba+bbb+aba)(a+b)\\*')
     input_letter = st.text_input('Enter a string letter:')
-    st.warning('Note: \n\n- Always end it with " , " in every Input\n\n- Example Input: (aaaaaaaaaa,aaaaaaaaaa,)\n\n- Valid Input: \n\n    - aaababbbbbaba\n\n   - bbbababaabbbaba', icon="⚠️")
+    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (aaaaaaaaaa,aaaaaaaaaa,)\n\n- Valid Input Examples: \n\n    - aaababbbbbaba,\n\n   - bbbababaabbbaba,', icon="⚠️")
     img2 = Image.open('PDA2_Regex.png')
     col1_letter,col3_letter,col4_letter = st.columns([1,1,1])
     with col1_letter:
@@ -172,6 +173,7 @@ with tab2:
     with col4_letter:
         if st.button('Push Down Automata Letter'):
             switch_page('PDA2')
+            # st.switch_page('pages/PDA2.py')
     #------------------------------------------------------------------------------------------------------
     place_holder_letter = st.empty()
     dot_letter = Digraph()
@@ -249,10 +251,10 @@ with tab2:
                 place_holder_letter.graphviz_chart(dot_letter)
                 time.sleep(1)
 with tab3:
-    st.header('Group 2 Members:')
+    st.header('GROUP 2 Members:')
     st.write('- Balan, Joseph Anton')
-    st.write('- Caling, Zandro')
-    st.write('- Llamera, Josh')
+    st.write('- Caling, Zandro Alvaro')
+    st.write('- Llamera, Josh Mickel')
     st.write('- Matel, Francis Ellison S.')
 #-------------------------------------------------------------------------
 
