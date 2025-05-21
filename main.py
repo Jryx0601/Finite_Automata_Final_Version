@@ -4,19 +4,10 @@ from graphviz import Digraph
 from dfa_checker import dfa_checker
 import time
 from PIL import Image
-# from streamlit_pdf_reader import pdf_reader
 import base64
 from streamlit_extras.switch_page_button import switch_page
 import pathlib
 st.set_page_config(layout="wide",initial_sidebar_state="collapsed")
-
-no_sidebar_style = """
-    <style>
-        div[data-testid="stSidebarNav"] {display: none;}
-    </style>
-"""
-st.markdown(no_sidebar_style, unsafe_allow_html=True)
-
 tab1, tab2,tab3,tab4 = st.tabs(['Regex 1','Regex 2','Members','User Manual'])
 with tab1:
     dfa_binary = {
