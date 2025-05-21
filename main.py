@@ -4,11 +4,13 @@ from graphviz import Digraph
 from dfa_checker import dfa_checker
 import time
 from PIL import Image
+from streamlit_pdf_reader import pdf_reader
+import base64
 from streamlit_extras.switch_page_button import switch_page
 import pathlib
 st.set_page_config(layout="wide",initial_sidebar_state='collapsed')
 
-tab1, tab2,tab3 = st.tabs(['Regex 1','Regex 2','Members'])
+tab1, tab2,tab3,tab4 = st.tabs(['Regex 1','Regex 2','Members','User Manual'])
 with tab1:
     dfa_binary = {
     'q0': {1: 'q1', 0: 'q1'},
@@ -32,7 +34,7 @@ with tab1:
 #------------------------------------------------------------------------------------------------------
     st.header('Regex: (1+0)(1+0)\\*(11+00)(11+00)\\*(1+0)(0+1)(11\\*00\\*) ((00)\\*+(11)\\*)(11+00)(11+00)\\*(1+0)\\*')
     input_string1 = st.text_input('Enter a string number:')
-    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input Example: \n\n   - 111101000,\n\n   - 1111111011,', icon="⚠️")
+    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input Example: \n\n   - 111101000\n\n   - 1111111011', icon="⚠️")
     img = Image.open('PDA.drawio.png')
 
     col1,col3,col4 = st.columns([1,1,1])
@@ -256,6 +258,10 @@ with tab3:
     st.write('- Caling, Zandro Alvaro')
     st.write('- Llamera, Josh Mickel')
     st.write('- Matel, Francis Ellison S.')
+
+with tab4:
+    file_path = 'Module_6-Week_15-16_Privacy_and_Civil_Liberty_BCS34.pdf'
+    pdf_reader(file_path)
 #-------------------------------------------------------------------------
 
 
