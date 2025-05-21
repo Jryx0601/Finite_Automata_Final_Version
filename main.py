@@ -32,7 +32,7 @@ with tab1:
 #------------------------------------------------------------------------------------------------------
     st.header('Regex: (1+0)(1+0)\\*(11+00)(11+00)\\*(1+0)(0+1)(11\\*00\\*) ((00)\\*+(11)\\*)(11+00)(11+00)\\*(1+0)\\*')
     input_string1 = st.text_input('Enter a string number:')
-    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input Example: \n\n   - 111101000\n\n   - 1111111011', icon="⚠️")
+    st.warning('Note: \n\n- Always end each input with a comma (,).\n\n- Example Input: (111111011,111111011,)\n\n - Valid Input Example: \n\n   - 111101000,\n\n   - 1111111011,', icon="⚠️")
     img = Image.open('PDA.drawio.png')
 
     col1,col3,col4 = st.columns([1,1,1])
