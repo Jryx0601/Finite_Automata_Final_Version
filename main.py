@@ -76,6 +76,7 @@ with tab1:
     with container:
         placehold_printing = st.empty()
         if simulate:
+            input_string1 = input_string1.replace(" ","")
             if input_string1[-1] != ",":
                 st.error('No "," at the end.', icon="🚨")
             else:
@@ -195,6 +196,7 @@ with tab2:
     with container_letter:
         placehold_printing_letter = st.empty()
         if simulate_letter:
+            input_letter = input_letter.replace(" ","")
             if input_letter[-1] != ",":
                 st.error('No "," at the end.', icon="🚨")
             else:
