@@ -40,7 +40,7 @@ with tab1:
         simulate = st.button('Simulate Binary')
     with col3:
         with st.popover('Context Free Grammar'):
-            st.text('S -> ABCDAAEH')
+            st.text('S -> ABCDAAEHCDB')
             st.text('   A -> 1|0')
             st.text('   B -> 1B|0B|e')
             st.text('   C -> 11|00')
@@ -48,7 +48,9 @@ with tab1:
             st.text('   E -> 1F0G')
             st.text('   F -> 1F|e')
             st.text('   G -> 0G|e')
-            st.text('   H -> 11B|00B')
+            st.text('   H -> I|J')
+            st.text('   I -> 00I|e')
+            st.text('   J -> 11J|e')
     with col4:
         modal = st.button('Push Down Automata Binary')
         if modal:
@@ -137,8 +139,8 @@ with tab2:
     'q8':{'a':'q9','b':'q10'},
     'q9':{'a':'q7','b':'q10'},
     'q10':{'a':'q11','b':'q12'},
-    'q11':{'a':'q13','b':'q10'},
-    'q12':{'a':'q10','b':'q13'},
+    'q11':{'a':'q13','b':'q22'},
+    'q12':{'a':'q23','b':'q13'},
     'q13':{'a':'q13','b':'q14'},
     'q14':{'a':'q14','b':'q15'},
     'q15':{'a':'q16','b':'q17'},
@@ -148,6 +150,8 @@ with tab2:
     'q19':{'a':'q21','b':'q21'},
     'q20':{'a':'q16','b':'q21'},
     'q21':{'a':'q21','b':'q21'},
+    'q22':{'b':'q11','a':'q13'},
+    'q23':{'a':'q13','b':'q12'},
     'T':{'a':'T','b':'T'}
 }
     #------------------------------------------------------------------------------------------------------

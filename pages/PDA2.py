@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 
 st.header('Push Down Automata Regex 2')
-img = Image.open('PDA2_Regex.png')
+img = Image.open('PDA_2_FINAL.jpg')
 # st.image(img)
 
 col1,col2,col3 = st.columns([1,10,1])
